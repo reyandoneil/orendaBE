@@ -96,7 +96,7 @@ Request JSON:
 ```
 
 ```http
-  POST /api/tasks/common
+  GET /api/tasks/common
 ```
 
 | Parameter | Type     | Description                       |
@@ -123,7 +123,8 @@ example2@mail task list :
 
 Response status 200
 {
-  task:{"Buy eggs","Buy milk"}
+  "status": 200,
+  "tasks":{"Buy eggs","Buy milk"}
 }
 ```
 
