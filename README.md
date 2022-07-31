@@ -96,7 +96,7 @@ Request JSON:
 ```
 
 ```http
-  POST /api/tasks/common
+  GET /api/tasks/common
 ```
 
 | Parameter | Type     | Description                       |
