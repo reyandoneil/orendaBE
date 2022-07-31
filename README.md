@@ -1,4 +1,51 @@
 
+# ORENDA BE TEST
+## Features
+
+- Create user
+- Assign task
+- Remove task
+- Liast all common task
+
+## Documentation
+### SETUP
+- clone github
+- Install all dependencies
+    ```bash
+  npm install 
+    ```
+- Install nodemon global
+    ```bash
+  npm install -g nodemon
+    ```
+- Run server
+    ```bash
+  nodemon app.js
+    ```
+```
+-if server runing you can see this in terminal-
+  [nodemon] restarting due to changes...
+  [nodemon] starting `node app.js`
+  This app running at port:3000
+```
+### SETUP DB
+- Create DB
+    ```bash
+  sequelize db:create
+    ```
+- Migrate DB
+    ```bash
+  sequelize db:migrate
+    ```
+- Connect DB
+```
+  you can see this in folder config, "development" environment
+    username: postgres
+    password: your password
+    database: db_development
+    dialect : postgres
+```
+  
 ## API Reference
 
 ```http
