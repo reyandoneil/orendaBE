@@ -9,8 +9,9 @@ class UserTaskController {
             task: []
         }))
         try {
-            const users = await UserTask.bulkCreate(dataUser)
-            return res.status(201).json({
+            const users = await UserTask.bulkCreate(dataUser, { validate: true })
+            
+            return res.status(204).json({
                 status: '204 No Content',
                 data: users
             });
@@ -40,21 +41,22 @@ class UserTaskController {
                     status: 500,
                     message: 'Task cannot be empty'
                 })
-            }
-            try {
-                const addTask = await UserTask.update(dataAddTask, {
-                    where: { user: user }
-                })
+            } else {
+                try {
+                    const addTask = await UserTask.update(dataAddTask, {
+                        where: { user: user }
+                    })
 
-                return res.status(204).json({
-                    status: 204,
-                    message: `No content ${addTask}`
-                });
-            } catch (error) {
-                return res.status(500).json({
-                    status: 500,
-                    message: 'Error add task'
-                });
+                    return res.status(204).json({
+                        status: 204,
+                        message: `No content ${addTask}`
+                    });
+                } catch (error) {
+                    return res.status(500).json({
+                        status: 500,
+                        message: 'Error add task'
+                    });
+                }
             }
 
         } catch (error) {
@@ -123,7 +125,7 @@ class UserTaskController {
             allTask.push(...findUser1.dataValues.task)
             const findUser2 = await UserTask.findOne({ where: { user: user2 } })
             allTask.push(...findUser2.dataValues.task)
-            
+
             const commonTask = [...new Set(allTask)]
             return res.status(200).json({
                 status: 200,

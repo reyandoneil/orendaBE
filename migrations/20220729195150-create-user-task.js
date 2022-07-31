@@ -9,14 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       user: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: true
+        }
+
       },
       task: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
-        validate: {
-          notEmpty: true,
-          isAlphanumeric: true,
-        }
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
       createdAt: {
         allowNull: false,
