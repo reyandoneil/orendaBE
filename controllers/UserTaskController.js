@@ -10,7 +10,8 @@ class UserTaskController {
         }))
         try {
             const users = await UserTask.bulkCreate(dataUser, { validate: true })
-            
+
+            res.setHeader("Content-Type", "application/json");
             return res.status(204).json({
                 status: '204 No Content',
                 data: users
@@ -47,6 +48,7 @@ class UserTaskController {
                         where: { user: user }
                     })
 
+                    res.setHeader("Content-Type", "application/json");
                     return res.status(204).json({
                         status: 204,
                         message: `No content ${addTask}`
@@ -93,7 +95,7 @@ class UserTaskController {
                 const addTask = await UserTask.update(dataAddTask, {
                     where: { user: user }
                 })
-
+                res.setHeader("Content-Type", "application/json");
                 return res.status(204).json({
                     status: 204,
                     message: `Success create new task ${addTask}`
@@ -127,9 +129,10 @@ class UserTaskController {
             allTask.push(...findUser2.dataValues.task)
 
             const commonTask = [...new Set(allTask)]
+            res.setHeader("Content-Type", "application/json");
             return res.status(200).json({
                 status: 200,
-                task: commonTask
+                tasks: commonTask
             })
 
         } catch (error) {
